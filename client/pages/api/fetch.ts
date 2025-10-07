@@ -2,8 +2,8 @@ import axios from "axios";
 import { UserInsert, UpdateUsers } from "@/types/user";
 import Cookies from "js-cookie";
 
-// export const BASE_URL = "https://itransition-task-5-e4l1.onrender.com";
-export const BASE_URL = "http://localhost:3005";
+export const BASE_URL = "https://itransition-task-5-e4l1.onrender.com";
+// export const BASE_URL = "http://localhost:3005";
 
 export const getAllUsers = async () => {
   const jwt = Cookies.get("@user_jwt");
