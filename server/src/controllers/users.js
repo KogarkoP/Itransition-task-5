@@ -27,10 +27,10 @@ export const INSERT_USER = async (req, res) => {
       password: passwordHash,
     };
 
+    await sendVerificationMail(user);
+
     const addUser = new userModel(user);
     const addedUser = await addUser.save();
-
-    sendVerificationMail(user);
 
     const savedUser = await userModel
       .findOne({ id: addedUser.id })
@@ -41,6 +41,7 @@ export const INSERT_USER = async (req, res) => {
       user: savedUser,
     });
   } catch (err) {
+    console.error("INSERT_USER error:", err);
     console.log(err);
     const DUPLICATE_ERROR_CODE = 11000;
     if (err.code === DUPLICATE_ERROR_CODE) {
@@ -94,6 +95,7 @@ export const LOGIN_USER = async (req, res) => {
     user.lastLogin = Date.now();
     await user.save();
 
+    // eslint-disable-next-line no-unused-vars
     const { password, __v, _id, email, ...userInfo } = user.toObject();
 
     const token = createToken(user.email, user.id);

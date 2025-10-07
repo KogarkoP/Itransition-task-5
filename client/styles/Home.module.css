@@ -88,14 +88,14 @@
 
 .buttons_wrapper .block_btn,
 .buttons_wrapper .unblock_btn {
-  background-color: #1c475a;
-  border-color: #1c475a;
+  background-color: #1c475a !important;
+  border-color: #1c475a !important;
 }
 
 .buttons_wrapper .block_btn:hover,
 .buttons_wrapper .unblock_btn:hover {
-  background-color: #13aff0;
-  border-color: #13aff0;
+  background-color: #13aff0 !important;
+  border-color: #13aff0 !important;
 }
 
 .notification_wrapper {
