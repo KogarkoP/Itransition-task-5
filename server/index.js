@@ -19,7 +19,7 @@ mongoose
 
 app.use("/users", userRouter);
 
-const PORT = process.env.PORT || 3005;
+const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
   console.log(`Server started on port: ${PORT}`);
