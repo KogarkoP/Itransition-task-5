@@ -51,7 +51,7 @@ export const updateUsersByIds = async ({ usersIds, update }: UpdateUsers) => {
   return response;
 };
 
-export const postRequest = async (body) => {
+export const postRequest = async (body: string) => {
   const response = await axios.post(`${BASE_URL}/users/verify-email`, body);
   const data = response.data;
 
