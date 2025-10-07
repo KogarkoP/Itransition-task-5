@@ -42,7 +42,7 @@ const VerifyEmail = () => {
     <PageTemplate>
       <div className={styles.page_wrapper}>
         {isLoading ? (
-          <div>
+          <div className={styles.progress}>
             <CircularProgress />
           </div>
         ) : (
