@@ -1,0 +1,191 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(161, 161, 161, 0.404);
+}
+
+.logo_wrapper {
+  display: flex;
+  width: 100px;
+}
+
+.logo_wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.nav {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  letter-spacing: 1px;
+  font-weight: 500;
+  font-size: 15px;
+  color: #1c475a;
+}
+
+.nav li {
+  transition: 0.2s ease-in-out;
+}
+
+.nav li:hover {
+  color: #13aff0;
+}
+
+.login a {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  border: solid 1px #1c475a;
+  background-color: #1c475a;
+  padding: 0.75rem;
+  border-radius: 20px;
+  transition: 0.2s ease-in-out;
+  color: white;
+  font-size: 16px;
+}
+
+.login:hover a {
+  background-color: #13aff0;
+  border-color: #13aff0;
+}
+
+.login button {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  border: solid 1px #1c475a;
+  background-color: #1c475a;
+  padding: 0.75rem;
+  border-radius: 20px;
+  transition: 0.2s ease-in-out;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login button:hover {
+  background-color: #13aff0;
+  border-color: #13aff0;
+}
+
+.login svg {
+  font-size: 24px;
+}
+
+.mobile_menu_bttn {
+  all: unset;
+  display: none;
+  cursor: pointer;
+}
+
+.mobile_menu_bttn svg {
+  font-size: 35px;
+  color: #1c475a;
+}
+
+.mobile_menu_wrapper {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(85, 81, 81, 0.39);
+}
+
+.mobile_menu {
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+  background-color: #1c475a;
+  height: 100%;
+  z-index: 999;
+}
+
+.mobile_menu ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+.mobile_menu li {
+  line-height: 24px;
+  color: #fff;
+  border-bottom: 1px solid #cfcece3a;
+  transition: 0.2s ease-in-out;
+}
+
+.mobile_menu li a {
+  display: block;
+  letter-spacing: 1px;
+  padding: 1rem;
+}
+
+.mobile_menu li:not(:first-child):hover {
+  background-color: #286984;
+}
+
+.mobile_menu .login_con {
+  padding: 1rem;
+  background-color: black;
+  border-bottom: unset;
+}
+
+.mobile_menu .login_con a {
+  padding: 0;
+  width: 200px;
+}
+
+.login_con svg {
+  margin-right: 0.5rem;
+  font-size: 21px;
+}
+
+.mobile_menu .login_con a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.login_con button {
+  all: unset;
+  cursor: pointer;
+  width: 200px;
+}
+
+.login_con button:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.close_bttn {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 40px;
+  transition: rotate 2s ease-in-out;
+}
+
+.close_bttn:hover {
+  rotate: 720deg;
+  scale: 1.1;
+}
+
+@media (max-width: 767px) {
+  .nav {
+    display: none;
+  }
+
+  .mobile_menu_bttn {
+    display: block;
+  }
+
+  .mobile_menu {
+    max-width: unset;
+  }
+}

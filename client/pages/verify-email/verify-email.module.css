@@ -1,0 +1,15 @@
+.page_wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  width: 100%;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  flex: 1;
+}
+
+@media (max-width: 767px) {
+  .page_wrapper {
+    padding: 0 1rem;
+  }
+}
