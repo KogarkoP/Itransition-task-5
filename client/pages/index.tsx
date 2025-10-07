@@ -17,11 +17,22 @@ const MainPage = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [usersIds, setUsersIds] = useState<string[]>([]);
   const [filter, setFilter] = useState<FilterOption>("all");
+  const [isLoggedIn, setLoggedIn] = useState(false);
   const router = useRouter();
 
   const fetchUsers = async () => {
     const response = await getAllUsers();
     setUsers(response.data.users);
+  };
+
+  const logoutOnUpdate = (usersIds: string[]) => {
+    const logedInUserId = localStorage.getItem("userId");
+
+    if (logedInUserId && usersIds.includes(logedInUserId)) {
+      Cookies.remove("@user_jwt");
+      setLoggedIn(false);
+      router.replace("/login");
+    }
   };
 
   const filteredUsers = users
@@ -57,24 +68,33 @@ const MainPage = () => {
   const deleteUsers = async (usersIds: string[]) => {
     try {
       const response = await deleteUsersByIds(usersIds);
-      setUsersIds([]);
+
+      logoutOnUpdate(usersIds);
+
       fetchUsers();
     } catch (error) {
       console.log("Error deleting user:", error);
+    } finally {
+      setUsersIds([]);
     }
   };
 
   const updateUsers = async (usersIds: string[], statusUpdate: boolean) => {
     try {
-      console.log(usersIds);
       const response = await updateUsersByIds({
         usersIds,
         update: { isBlocked: statusUpdate },
       });
-      setUsersIds([]);
+
+      if (statusUpdate) {
+        logoutOnUpdate(usersIds);
+      }
+
       fetchUsers();
     } catch (error) {
       console.log("Error updating user:", error);
+    } finally {
+      setUsersIds([]);
     }
   };
 
