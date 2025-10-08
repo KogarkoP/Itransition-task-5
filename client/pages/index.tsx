@@ -18,6 +18,7 @@ const MainPage = () => {
   const [usersIds, setUsersIds] = useState<string[]>([]);
   const [filter, setFilter] = useState<FilterOption>("all");
   const [isLoggedIn, setLoggedIn] = useState(false);
+  const [loggedInUserId, setLoggedInUserId] = useState<string>("");
   const router = useRouter();
 
   const fetchUsers = async () => {
@@ -25,10 +26,8 @@ const MainPage = () => {
     setUsers(response.data.users);
   };
 
-  const logoutOnUpdate = (usersIds: string[]) => {
-    const logedInUserId = localStorage.getItem("userId");
-
-    if (logedInUserId && usersIds.includes(logedInUserId)) {
+  const logoutOnUpdate = (usersIds: string[], loggedInUserId: string) => {
+    if (loggedInUserId && usersIds.includes(loggedInUserId)) {
       Cookies.remove("@user_jwt");
       setLoggedIn(false);
       router.replace("/login");
@@ -69,7 +68,7 @@ const MainPage = () => {
     try {
       const response = await deleteUsersByIds(usersIds);
 
-      logoutOnUpdate(usersIds);
+      logoutOnUpdate(usersIds, loggedInUserId);
 
       fetchUsers();
     } catch (error) {
@@ -87,7 +86,7 @@ const MainPage = () => {
       });
 
       if (statusUpdate) {
-        logoutOnUpdate(usersIds);
+        logoutOnUpdate(usersIds, loggedInUserId);
       }
 
       fetchUsers();
@@ -107,6 +106,11 @@ const MainPage = () => {
       }
     });
   };
+
+  useEffect(() => {
+    const userId = localStorage.getItem("userId") || "";
+    setLoggedInUserId(userId);
+  }, []);
 
   useEffect(() => {
     const token = Cookies.get("@user_jwt");
@@ -224,6 +228,7 @@ const MainPage = () => {
                     lastLogin={user.lastLogin}
                     setUsersIds={selectedUsersIds}
                     usersIds={usersIds}
+                    loggedInUserId={loggedInUserId}
                   />
                 );
               })}

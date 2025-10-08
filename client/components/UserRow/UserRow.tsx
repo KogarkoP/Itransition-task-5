@@ -9,6 +9,7 @@ type UserType = {
   blocked: boolean;
   lastLogin: Date;
   usersIds: string[];
+  loggedInUserId: string;
   setUsersIds: (usersIds: string) => void;
 };
 
@@ -20,6 +21,7 @@ const UserRow = ({
   blocked,
   lastLogin,
   usersIds,
+  loggedInUserId,
   setUsersIds,
 }: UserType) => {
   const status = blocked ? "Blocked" : verified ? "Active" : "Unverified";
@@ -34,7 +36,11 @@ const UserRow = ({
   });
 
   return (
-    <tr className={styles.data_row}>
+    <tr
+      className={`${styles.data_row} ${
+        loggedInUserId === id ? styles.current : ""
+      }`}
+    >
       <td className={styles.checkbox_con}>
         <input
           type="checkbox"
